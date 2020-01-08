@@ -11,7 +11,7 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "test": "standard | snazzy && node --force-context-aware ./node_modules/.bin/tape test/*.js | faucet",
+    "test": "standard | snazzy && tape test/*.js | faucet",
     "rebuild": "node-gyp rebuild --verbose",
     "prebuild": "prebuild --all --strip",
     "install": "prebuild-install || node-gyp rebuild"
