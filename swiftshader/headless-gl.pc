@@ -1,0 +1,8 @@
+Name: swiftshader
+Version: 1.0.0
+Description: headless gl using swiftshader
+
+prefix=/tmp/headless-gl
+libdir=${prefix}/lib
+Libs: -L${libdir} -lGLESv2 -lEGL
+Cflags: -I/tmp/swiftshader/include

@@ -106,10 +106,6 @@ WebGLRenderingContext::WebGLRenderingContext(
       , EGL_NONE
   };
   surface = eglCreatePbufferSurface(DISPLAY, config, surfaceAttribs);
-  if (surface == EGL_NO_SURFACE) {
-    state = GLCONTEXT_STATE_ERROR;
-    return;
-  }
 
   //Set active
   if (!eglMakeCurrent(DISPLAY, surface, surface, context)) {
