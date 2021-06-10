@@ -1,8 +1,22 @@
 #include "webgl.h"
 void WebGLRenderingContext::initPointers(){
-	glDrawArraysInstanced=reinterpret_cast<PFNGLDRAWARRAYSINSTANCEDANGLEPROC>(eglGetProcAddress("glDrawArraysInstancedANGLE"));
-	glDrawElementsInstanced=reinterpret_cast<PFNGLDRAWELEMENTSINSTANCEDANGLEPROC>(eglGetProcAddress("glDrawElementsInstancedANGLE"));
-	glVertexAttribDivisor=reinterpret_cast<PFNGLVERTEXATTRIBDIVISORANGLEPROC>(eglGetProcAddress("glVertexAttribDivisorANGLE"));
+	if (eglGetProcAddress("glDrawArraysInstancedANGLE")) {
+		glDrawArraysInstanced=reinterpret_cast<PFNGLDRAWARRAYSINSTANCEDANGLEPROC>(eglGetProcAddress("glDrawArraysInstancedANGLE"));
+	} else {
+		glDrawArraysInstanced=reinterpret_cast<PFNGLDRAWARRAYSINSTANCEDANGLEPROC>(eglGetProcAddress("glDrawArraysInstanced"));
+	}
+
+	if (eglGetProcAddress("glDrawElementsInstancedANGLE")) {
+		glDrawElementsInstanced=reinterpret_cast<PFNGLDRAWELEMENTSINSTANCEDANGLEPROC>(eglGetProcAddress("glDrawElementsInstancedANGLE"));
+	} else {
+		glDrawElementsInstanced=reinterpret_cast<PFNGLDRAWELEMENTSINSTANCEDANGLEPROC>(eglGetProcAddress("glDrawElementsInstanced"));
+	}
+
+	if (eglGetProcAddress("glVertexAttribDivisorANGLE")) {
+		glVertexAttribDivisor=reinterpret_cast<PFNGLVERTEXATTRIBDIVISORANGLEPROC>(eglGetProcAddress("glVertexAttribDivisorANGLE"));
+	} else {
+		glVertexAttribDivisor=reinterpret_cast<PFNGLVERTEXATTRIBDIVISORANGLEPROC>(eglGetProcAddress("glVertexAttribDivisor"));
+	}
 
 	glUniform1f=reinterpret_cast<PFNGLUNIFORM1FPROC>(eglGetProcAddress("glUniform1f"));
 	glUniform2f=reinterpret_cast<PFNGLUNIFORM2FPROC>(eglGetProcAddress("glUniform2f"));
